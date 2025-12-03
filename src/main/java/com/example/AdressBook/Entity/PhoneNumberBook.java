@@ -43,5 +43,20 @@ public class PhoneNumberBook
 
     @OneToMany(mappedBy = "phoneBook")
     private List<PhoneNumberHistory> histories = new ArrayList<>();
+    /*
+    🔥 2. 이 FK를 자동으로 채워주는 건 @ManyToOne
+
+자식 엔티티에서 이렇게 했을 때:
+
+@ManyToOne
+@JoinColumn(name = "phonebook_id")
+private PhoneNumberBook phoneBook;
+
+
+이 필드가 하는 일:
+
+엔티티 저장할 때
+→ phoneBook.getIndex() 를 FK 로 자동 저장
+     */
       
 }
