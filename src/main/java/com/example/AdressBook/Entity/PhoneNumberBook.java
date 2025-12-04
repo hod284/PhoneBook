@@ -4,6 +4,7 @@ package com.example.AdressBook.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,13 +36,20 @@ public class PhoneNumberBook
     @Column(nullable =  false, unique =  true)
     private String phone_owner;
     // 폰넘버
-    @Column(nullable =  false)
+    @Column(nullable =  false, unique =  true)
     private  String phone_number;
     // 폰 넘버 그룹
     @Column (nullable = false)
     private   int  phone_group;
-
-    @OneToMany(mappedBy = "phoneBook")
+    /*
+     cascade = CascadeType.REMOVE,
+              orphanRemoval = true
+              이부분을 추가해주면 fk키를 삭제할경우 그에관련된 자식에 있는테이블의 데이터가 모두 사라진다.
+              원래라면 fk를 삭제하지 않는게 정석
+    */
+    @OneToMany(mappedBy = "phoneBook",  
+              cascade = CascadeType.REMOVE,
+              orphanRemoval = true)
     private List<PhoneNumberHistory> histories = new ArrayList<>();
     /*
     🔥 2. 이 FK를 자동으로 채워주는 건 @ManyToOne

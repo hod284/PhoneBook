@@ -14,20 +14,11 @@ public interface RepositryParent  extends JpaRepository<PhoneNumberBook,Long> {
     @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_owner  = :pname")
     public PhoneNumberBook GetDatabyName(@Param("pname") String pname);
 
-    @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_owner  = :pname")
-    public List<PhoneNumberBook> GetDatabyNameaslist(@Param("pname") String pname);
-
     @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_number  = :pnumber")
     public PhoneNumberBook GetDatabyNumber(@Param("pnumber") String pnumber);
 
-    @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_number  = :pnumber")
-    public List<PhoneNumberBook> GetDatabyNumberaslist(@Param("pnumber") String pnumber);
-
     @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_group  = : phonegroup")
-    public PhoneNumberBook GetDatabyGroup(@Param("phonegroup") String phonegroup);
-
-    @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_group  = : phonegroup")
-    public List<PhoneNumberBook> GetDatabyGroupaslist(@Param("phonegroup") String phonegroup);
+    public List<PhoneNumberBook> GetDatabyGroupaslist(@Param("phonegroup") Integer phonegroup);
     
     @Query("SELECT p.phone_owner FROM PhoneNumberBook p")
     public List<String> GetallPhoneOwner();

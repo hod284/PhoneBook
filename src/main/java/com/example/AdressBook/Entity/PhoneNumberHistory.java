@@ -1,6 +1,6 @@
 package com.example.AdressBook.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,11 +25,11 @@ public class PhoneNumberHistory {
      private long index;     
      // 폰주인
      @ManyToOne
-     @JoinColumn(name = "phonebook_id", nullable = false) // FK 컬럼
-     private PhoneNumberBook phoneBook;  // 🔥 String 아니고 PhoneNumberBook
+     @JoinColumn(name = "phonebook_id", nullable = false, referencedColumnName = "phone_owner") // FK 컬럼
+     private PhoneNumberBook phonebook;  // 🔥 String 아니고 PhoneNumberBook
      // 통화한 시각
      @Column(nullable =  false)
-     private LocalDateTime phone_datetime;
+     private LocalDate phone_datetime;
      // 전화를 걸었는지 안걸었는지
      @Column (nullable =  false)
      private int phone_callingorgettring;
