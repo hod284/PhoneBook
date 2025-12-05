@@ -62,9 +62,6 @@ public class BookService {
       {
          log.info("Delete");
          PhoneNumberBook PB =  ParentRepo.GetDatabyName(rp.Name());
-         PB.setPhone_owner(rp.Name());
-         PB.setPhone_number(rp.Number());
-         PB.setPhone_group(rp.Group());
           ParentRepo.delete(PB);
       } 
       // db데이터 읽어오기 PHONEBOOK 이름으로
@@ -165,9 +162,9 @@ public class BookService {
       }
       // 통화한 시간 컬럼가져오기
      @Transactional(readOnly = true)
-      public List<LocalDate> Alltalldatetime()
+      public List<LocalDate> Alltdatetime()
       {
-        log.info("Alltalldatetime");
+        log.info("Alldatetime");
             return   ChildRepo.Getalldatetime();
       }
       // 전화를 받았는지 안받았는지 확인 하는 컬럼 다들고오기
