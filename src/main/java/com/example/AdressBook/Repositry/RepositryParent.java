@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.example.AdressBook.Entity.PhoneNumberBook;
+import com.example.AdressBook.EntityClass.PhoneNumberBook;
 
 // 레포지트리 폰넘버 폰주인 폰 그룹에 있는  DB 커넥트 클래스
 //  JpaRepository<enitity class,pk>

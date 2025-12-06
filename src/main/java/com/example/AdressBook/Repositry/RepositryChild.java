@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.example.AdressBook.Entity.PhoneNumberHistory;
+import com.example.AdressBook.EntityClass.PhoneNumberHistory;
 // 레포지트리 폰 주인을  전화를 건시간 전화를 걸었는지 안걸었는지 담겨있는 DB커넥트 클래스
 //  JpaRepository<enitity class,pk>
 public interface RepositryChild  extends JpaRepository<PhoneNumberHistory,Long> {

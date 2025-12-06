@@ -1,4 +1,4 @@
-package com.example.AdressBook.Entity;
+package com.example.AdressBook.EntityClass;
 
 import java.time.LocalDate;
 import jakarta.persistence.Column;
