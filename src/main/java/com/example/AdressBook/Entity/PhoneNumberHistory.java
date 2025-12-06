@@ -17,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="PhoneNumberConnection")
+@Entity
 @NoArgsConstructor(access =  AccessLevel.PUBLIC)
 public class PhoneNumberHistory {
      //PK 자동 생성 때문데 이렇게 적음
