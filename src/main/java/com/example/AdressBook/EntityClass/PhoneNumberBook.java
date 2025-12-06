@@ -47,7 +47,7 @@ public class PhoneNumberBook
               이부분을 추가해주면 fk키를 삭제할경우 그에관련된 자식에 있는테이블의 데이터가 모두 사라진다.
               원래라면 fk를 삭제하지 않는게 정석
     */
-    @OneToMany(mappedBy = "phoneBook",  
+    @OneToMany(mappedBy = "phonebook",  
               cascade = CascadeType.REMOVE,
               orphanRemoval = true)
     private List<PhoneNumberHistory> histories = new ArrayList<>();
