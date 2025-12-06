@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16
+    container_name: db
+    environment:
+      restart : unless-stopped
+      TZ: Asia/Seoul
+      POSTGRES_DB: phone_db
+      POSTGRES_USER: phone_user
+      POSTGRES_PASSWORD: phone_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phone_user -d phone_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  spring-app:
+    image: hod284/phoneapp:latest    # 여기에 네 스프링 Dockerfile 있음
+    container_name: spring-phoneapp
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Seoul
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phone_db
+      SPRING_DATASOURCE_USERNAME: phone_user
+      SPRING_DATASOURCE_PASSWORD: phone_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8081:8081"
+
+volumes:
+  db_data:

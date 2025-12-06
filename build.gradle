@@ -41,3 +41,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+//Gradle이 자동 생성하는 plain JAR(jar) 파일을 만들지 않게 하고
+//대신 bootJar(Spring Boot 실행용 JAR)만 생성하게 만드는 설정임.
+tasks.named('jar') {
+    enabled = false
+}
+
+bootJar {
+    archiveFileName = "phone.jar"
+}
