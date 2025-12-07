@@ -1,11 +1,12 @@
 package com.example.AdressBook.EntityClass;
 
 import java.time.LocalDate;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -34,5 +35,5 @@ public class PhoneNumberHistory {
      private LocalDate phone_datetime;
      // 전화를 걸었는지 안걸었는지
      @Column (nullable =  false)
-     private int phone_callingorgettring;
+     private Integer phone_callingorgetting;
 }

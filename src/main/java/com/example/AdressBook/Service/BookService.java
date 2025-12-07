@@ -123,7 +123,7 @@ public class BookService {
          PhoneNumberHistory PC =  new PhoneNumberHistory();
          PC.setPhonebook(PB);
          PC.setPhone_datetime(LocalDate.now());
-         PC.setPhone_callingorgettring(rc.CallingorGettring());
+         PC.setPhone_callingorgetting(rc.CallingorGetting());
          var li = PB.getHistories();
          li.add(PC);
          PB.setHistories(li);
@@ -134,8 +134,8 @@ public class BookService {
       public void ModifyCallingHistory(ResponseChildDto rc,String date, Integer modify_callingorgetter)
       {        
          log.info("ModifyCallingHistory");
-         PhoneNumberHistory PC =ChildRepo.GetDatabyNameasModify(rc.CallingName(), rc.CallingorGettring(),date);
-         PC.setPhone_callingorgettring(modify_callingorgetter);
+         PhoneNumberHistory PC =ChildRepo.GetDatabyNameasModify(rc.CallingName(), rc.CallingorGetting(),date);
+         PC.setPhone_callingorgetting(modify_callingorgetter);
          PC.setPhone_datetime(LocalDate.now());
       }
          // db데이터 읽어오기  PhoneNumberHistory name
@@ -154,10 +154,10 @@ public class BookService {
       }
          // db데이터 읽어오기  PhoneNumberHistory  callingorgettring
       @Transactional(readOnly =  true)
-      public  List<PhoneNumberHistory> ListCallinghistoryBy( int callingorgettring)
+      public  List<PhoneNumberHistory> ListCallinghistoryBy( Integer callingorgetting)
       {
         log.info("ListCallinghistoryBy");
-       return  ChildRepo.GetDatabyGroupaslist(callingorgettring);
+       return  ChildRepo.GetDatabyGroupaslist(callingorgetting);
       }
       // 통화한 시간 컬럼가져오기
      @Transactional(readOnly = true)
@@ -168,10 +168,10 @@ public class BookService {
       }
       // 전화를 받았는지 안받았는지 확인 하는 컬럼 다들고오기
        @Transactional(readOnly = true)
-      public List<Integer> Allcallingorgettring()
+      public List<Integer> Allcallingorgetting()
       {
-        log.info("Allcallingorgettring");
-            return ChildRepo.Getallcallingorgettring();
+        log.info("Allcallingorgetting");
+            return ChildRepo.Getallcallingorgetting();
       } 
      
 

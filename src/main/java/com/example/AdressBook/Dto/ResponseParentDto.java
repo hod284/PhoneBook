@@ -4,5 +4,5 @@ package com.example.AdressBook.Dto;
 public record ResponseParentDto(
       String Name,
       String Number,
-      int  Group
+      Integer Group
 ) { }

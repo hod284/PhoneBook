@@ -82,9 +82,9 @@ public class BookController {
          return ResponseEntity.ok(re);
      }
      @GetMapping("/Column_callingorgetting")
-     public ResponseEntity<List<Integer>> getcallingorgettringlist() 
+     public ResponseEntity<List<Integer>> getcallingorgettinglist() 
      {
-        var re = BService.Allcallingorgettring();
+        var re = BService.Allcallingorgetting();
        log.info(re.toString());
         if(re.get(0) == null || re.get(0)==0)
         {
@@ -119,7 +119,7 @@ public class BookController {
                  li.get(i).getPhonebook().getPhone_number(),
                  li.get(i).getPhonebook().getPhone_group(),
                  li.get(i).getPhone_datetime(),
-                 li.get(i).getPhone_callingorgettring()
+                 li.get(i).getPhone_callingorgetting()
                 ));
          }
          return ResponseEntity.ok(re);   
@@ -141,7 +141,7 @@ public class BookController {
                  li.get(i).getPhonebook().getPhone_number(),
                  li.get(i).getPhonebook().getPhone_group(),
                  li.get(i).getPhone_datetime(),
-                 li.get(i).getPhone_callingorgettring()
+                 li.get(i).getPhone_callingorgetting()
                 ));
          }
          return ResponseEntity.ok(re);   
@@ -171,7 +171,7 @@ public class BookController {
         log.info(exits.toString());
         if( exits)
         {
-         BService.Called(new ResponseChildDto(dto.CallingName(),dto.CallingorGettring()));
+         BService.Called(new ResponseChildDto(dto.CallingName(),dto.CallingorGetting()));
          return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

@@ -19,20 +19,20 @@ public interface RepositryChild  extends JpaRepository<PhoneNumberHistory,Long> 
      SELECT p FROM PhoneNumberHistory p  
         INNER JOIN p.phonebook  b 
         WHERE b.phone_owner  = :pname
-        AND  P.phone_callingorgettring =: callingorgettring 
-        AND  FUNCTION('TO_CHAR',p.phone_datetime,'YYYY-MM-DD')  =:pdate 
+        AND  p.phone_callingorgetting = :callingorgetting 
+        AND  FUNCTION('TO_CHAR',p.phone_datetime,'YYYY-MM-DD')  = :pdate 
     """)
-    public PhoneNumberHistory GetDatabyNameasModify(@Param("pname") String pname,@Param("callingorgettring") int callingorgettring,@Param("pdate") String pdate);
+    public PhoneNumberHistory GetDatabyNameasModify(@Param("pname") String pname,@Param("callingorgetting") int callingorgetting,@Param("pdate") String pdate);
 
-    @Query("SELECT p FROM PhoneNumberHistory p WHERE FUNCTION('TO_CHAR',p.phone_datetime,'YYYY-MM-DD' )  LIKE CONCAT(:pdate,'%')")
+    @Query("SELECT p FROM PhoneNumberHistory p WHERE cast(function('TO_CHAR', p.phone_datetime, 'YYYY-MM-DD') as string) LIKE CONCAT(:pdate,'%')")
     public List<PhoneNumberHistory> GetDatabyYearandMonth(@Param("pdate") String pdate);
 
-    @Query("SELECT p FROM PhoneNumberHistory p WHERE p.phone_callingorgettring  = : callingorgettring")
-    public List<PhoneNumberHistory> GetDatabyGroupaslist(@Param("callingorgettring") int callingorgettring);
+    @Query("SELECT p FROM PhoneNumberHistory p WHERE p.phone_callingorgetting = :callingorgetting")
+    public List<PhoneNumberHistory> GetDatabyGroupaslist(@Param("callingorgetting") Integer  callingorgetting);
     
     @Query("SELECT p.phone_datetime FROM PhoneNumberHistory p")
     public List<LocalDate> Getalldatetime();
 
-    @Query("SELECT p.phone_callingorgettring FROM PhoneNumberHistory p")
-    public List<Integer> Getallcallingorgettring();
+    @Query("SELECT p.phone_callingorgetting FROM PhoneNumberHistory p")
+    public List<Integer> Getallcallingorgetting();
 }

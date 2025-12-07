@@ -8,5 +8,5 @@ public record ResponseDto(
       String Number,
       Integer  Group,
       LocalDate Time,
-      Integer CallingorGettring
+      Integer CallingorGetting
 ) {  }
