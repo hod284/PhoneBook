@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html languge ='en'>
+<head>
+<Title>쿼리문 연습</Title>
+<style>
+.container
+{
+    display: flex;
+}
+.right{
+width: 20%;
+background: lightblue;
+display: flex;
+align-items: flex-end;
+flex-direction: column;
+gap: 10px;
+justify-content: flex-start; /* 오른쪽 정렬 */
+}
+
+ .left{
+width: 20%;
+background: lightcoral;
+display: flex;
+align-items: flex-end;
+gap: 5px;
+flex-wrap: wrap;
+justify-content: flex-start; 
+}
+.left button {
+  width: calc(20% - 10px); /* 한 줄에 2개 */
+}
+</style>
+</head>
+<body>
+<div class='container'> 
+   <div class="left">
+        <button id="getColum_one"> 폰주인 리스트 얻어오기</button> 
+        <button id="getColum_two"> 폰넘버 리스트 얻어오기</button> 
+        <button id="getColum_three"> 폰그룹 리스트 얻어오기</button> 
+        <button id="getColum_four"> 폰 통화 날짜 리스트 얻어오기</button> 
+        <button id="getColum_five"> 폰 수신 여부 리스트 얻어오기</button> 
+        <button id="getphonebookclass"> 폰주인으로 모든 정보 얻어오기</button> 
+        <button id="getphonehistoryclass"> 폰주인 통화내역 얻어오기</button> 
+        <button id="getphonehistoryclassbydate"> 날짜로 통화내역 얻어오기</button> 
+        <button id="getphonehistoryclassbynumber"> 폰번호로 폰주인 정보 얻어오기</button>
+        <button id="addthephonenumber"> 번호 저장하기</button> 
+        <button id="addphonehistory">통화내역 저장하기</button>  
+        <button id="modifyphoneNumber"> 번호 수정하기</button> 
+        <button id="inite">통화 내역 초기화</button>  
+        <button id="onedelete"> 번호 지우기</button> 
+        <button id="Group">그룹으로 찾기</button>  
+   </div>
+    <div class="right">
+    <label> 폰 주인 <input id ='PhineOwner' type ="text"> </label>
+    <label> 폰번호  <input id ='PhoneNumber' type ="text"></label>
+    <label> 그룹   <input id ='Group' type="number"></label>
+    <label>전화 건 날찌<input id ='CallingDate' type ="date"></label>
+     <label> 1: 수신 2: 발신  </label>
+    <label>전화수신여부<input id ='callingorgetting' type ='number'></label>
+   </div>
+</div>
+<h2>📊 동적 데이터 테이블</h2>
+    <div class="spreadsheet-container">
+        <table id="dynamicTable">
+            <thead>
+                <tr id="tableHead"></tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+    </div>
+<script src ='./javascript/main.js'> </script>    
+</body>
+</html>
