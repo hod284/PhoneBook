@@ -33,7 +33,7 @@ Columbutton_one.addEventListener("click",async ()=>{
     
     if(re.ok)
     {
-        SettingtheTable (re);
+        SettingtheTable (re,1);
     }
     else
     {
@@ -45,14 +45,14 @@ catch(exception)
     console.log(exception);
 }
 });
-Columbutton_one.addEventListener("click",async ()=>{
+Columbutton_two.addEventListener("click",async ()=>{
     
     try{
-    const re = await fetch('/api/Column_Owner',null);
+    const re = await fetch('/api/Column_Number',null);
     
     if(re.ok)
     {
-        SettingtheTable (re);
+        SettingtheTable (re,2);
     }
     else
     {
@@ -64,14 +64,14 @@ catch(exception)
     console.log(exception);
 }
 });
-Columbutton_one.addEventListener("click",async ()=>{
+Columbutton_three.addEventListener("click",async ()=>{
     
     try{
-    const re = await fetch('/api/Column_Owner',null);
+    const re = await fetch('/api/Column_PhoneGroup',null);
     
     if(re.ok)
     {
-        SettingtheTable (re);
+        SettingtheTable (re,3);
     }
     else
     {
@@ -83,14 +83,110 @@ catch(exception)
     console.log(exception);
 }
 });
+Columbutton_four.addEventListener("click",async ()=>{
+    
+    try{
+    const re = await fetch('/api/Column_datetime',null);
+    
+    if(re.ok)
+    {
+        SettingtheTable (re,4);
+    }
+    else
+    {
+        alert('컬럼이 비었습니다');
+    }
+}
+catch(exception)
+{
+    console.log(exception);
+}
+});
+Columbutton_five.addEventListener("click",async ()=>{
+    
+    try{
+    const re = await fetch('/api/Column_callingorgetting',null);
+    
+    if(re.ok)
+    {
+        SettingtheTable (re,5);
+    }
+    else
+    {
+        alert('컬럼이 비었습니다');
+    }
+}
+catch(exception)
+{
+    console.log(exception);
+}
+});
+Init.addEventListener("click",async ()=>{
+    
+    try{
+    const re = await fetch('/api/init',{
+        method: 'DELETE'
+    });
+    
+    if(re.ok)
+    {
+         alert('초기화 하였습니다');
+    }
+    else
+    {
+        alert('실패했습니다');
+    }
+}
+catch(exception)
+{
+    console.log(exception);
+}
+});
+Onedelete.addEventListener("click",async ()=>{
+    try{
+     if(Phoneowner.value === null|| Phoneowner.value.trim.toString() ==="")
+    {
+        alert("이름을 입력하세요");
+        return;
+    }
+       if(Phonenumber.value === null|| Phoneowner.value.trim.toString() ==="")
+    {
+        alert("번호를 입력하세요");
+        return;
+    }
+       if(Phonegroup.value === null|| Phonegroup.value.trim.toString() ==="")
+    {
+        alert("그룹을 입력하세요");
+        return;
+    }
+     const body={
+         Name:Phoneowner.value.trim ,
+         Number:Phonenumber.value.trim,
+         Group:Phonegroup.value.trim 
+    };
+    const re = await fetch('/api/onedelete',{
+        method: 'DELETE',
+        headers :{'Contents - Type': "application/json"},
+        body: JSON.stringify(body)
+    });
+    if(re.ok)
+    {
+        alert("삭제 완료");
+    }
+    else
+    {
+     throw new Error(await re.text());
+    }
+}
+catch(exception)
+{
+    console.log(exception);
+}
+});
 
 
 
-
-
-
-
-function SettingtheTable (data)
+function SettingtheTable (data,index)
 {
     tableBody.innerHTML ="";
     tableHead.innerHTML ="";
@@ -104,7 +200,14 @@ function SettingtheTable (data)
        const tr = document.createElement('tr');
        array.forEach(col =>{
         const td = document.createElement('td') as HTMLElement;
-        td.textContent=row[col];
+        if(index = 5)
+        {
+             td.textContent= row[col] === 1?'수신':'발신';
+        }
+        else
+        {
+            td.textContent=  row[col];
+        }
         tr.appendChild(td);
        });
        tableBody.appendChild(tr);
