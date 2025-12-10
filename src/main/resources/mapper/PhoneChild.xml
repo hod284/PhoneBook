@@ -9,7 +9,7 @@
   <arg column="phone_owner" javaType="string"/>
   <arg column="phone_number" javaType="string"/>
   <arg column="phone_group" javaType="int"/>
-  <arg column="phone_date" javaType="datetime"/>
+  <arg column="phone_date" javaType="java.time.LocalDate"/>
   <arg column="phone_callingorgetting" javaType="int"/>
   </constructor>
 </resultMap>
@@ -49,7 +49,7 @@
   select   phone_datetime   
     from phonenumber_connection 
 </select>
-<select id=" Getallcallingorgetting" resultType="int">
+<select id="Getallcallingorgetting" resultType="int">
   select  phone_callingorgetting   
     from phonenumber_connection 
 </select>

@@ -39,7 +39,7 @@ from phone_numberbook
 select  phone_number
 from phone_numberbook
 </select>
-<select id="GetallPhoneGroup" resultMap="int">
+<select id="GetallPhoneGroup" resultType="int">
 select  phone_group
 from phone_numberbook
 </select>
