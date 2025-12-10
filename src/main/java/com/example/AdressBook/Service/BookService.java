@@ -37,8 +37,7 @@ public class BookService {
           CMapper = cmapper;
       }
 
-    public BookService() {
-    }
+
       // db데이터 업데이트 PHONEBOOK
       @Transactional
       public void SavePhoneNumber(ResponseParentDto rp)

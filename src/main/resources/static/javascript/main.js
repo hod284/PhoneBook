@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const Phoneowner = document.getElementById('PhoneOwner');
 const Phonenumber = document.getElementById('PhoneNumber');
-const Phonegroup = document.getElementById('Group');
+const Phonegroup = document.getElementById('inGroup');
 const Searchingdate = document.getElementById('SearchingDate');
 const Callingorgetting = document.getElementById('callingorgetting');
 const Columbutton_one = document.getElementById('getColum_one');
@@ -22,7 +22,7 @@ const Addphonebook = document.getElementById('addthephonenumber');
 const Addphonehistory = document.getElementById('addphonehistory');
 const Init = document.getElementById('inite');
 const Onedelete = document.getElementById('onedelete');
-const getPhoneinfobynumber = document.getElementById('getphonebookclassbynumber');
+const getPhoneinfobynumber = document.getElementById('getphonehistoryclassbynumber');
 const getphoneinfobyowner1 = document.getElementById('getphonebookclass');
 const getphoneinfobyowner2 = document.getElementById('getphonehistoryclass');
 const getphoneinfobygroup = document.getElementById('Group');
@@ -142,13 +142,13 @@ Onedelete.addEventListener("click", () => __awaiter(this, void 0, void 0, functi
             return;
         }
         const body = {
-            Name: Phoneowner.value.trim,
-            Number: Phonenumber.value.trim,
-            Group: Phonegroup.value.trim
+            Name: Phoneowner.value.trim(),
+            Number: Phonenumber.value.trim(),
+            Group: Phonegroup.value.trim()
         };
         const re = yield fetch('/api/onedelete', {
             method: 'DELETE',
-            headers: { 'Contents - Type': "application/json" },
+            headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         });
         if (re.ok) {
@@ -206,7 +206,7 @@ getphoneinfobyowner2.addEventListener("click", () => __awaiter(this, void 0, voi
 }));
 getphoneinfobygroup.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
     try {
-        if (Phonegroup.value === null || Phonegroup.value === null) {
+        if (Phonegroup.value === null) {
             alert("그룹을 입력하세요");
             return;
         }
@@ -231,7 +231,7 @@ getphoneinfobydate.addEventListener('click', () => __awaiter(this, void 0, void 
             alert("검색할 연도나 달을 입력하세요");
             return;
         }
-        const re = yield fetch(`/api/da/${Searchingdate.value.trim}`);
+        const re = yield fetch(`/api/da/${Searchingdate.value.trim()}`);
         if (re.ok) {
             const data = yield re.json();
             console.log(data);
@@ -252,7 +252,7 @@ getPhoneinfobynumber.addEventListener('click', () => __awaiter(this, void 0, voi
             alert("번호를 입력하세요");
             return;
         }
-        const re = yield fetch(`/api/nu/${Phoneowner.value.trim}`);
+        const re = yield fetch(`/api/nu/${Phoneowner.value.trim()}`);
         if (re.ok) {
             const data = yield re.json();
             console.log(data);
@@ -282,13 +282,13 @@ Modiftyphonebook.addEventListener('click', () => __awaiter(this, void 0, void 0,
             return;
         }
         const body = {
-            Name: Phoneowner.value.trim,
-            Number: Phonenumber.value.trim,
-            Group: Phonegroup.value.trim
+            Name: Phoneowner.value.trim(),
+            Number: Phonenumber.value.trim(),
+            Group: Phonegroup.value.trim()
         };
         const re = yield fetch('/api/changephonbookinfo', {
             method: 'PATCH',
-            headers: { 'Contents - Type': "application/json" },
+            headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         });
         if (re.ok) {
@@ -318,17 +318,19 @@ Addphonebook.addEventListener('click', () => __awaiter(this, void 0, void 0, fun
             return;
         }
         const body = {
-            Name: Phoneowner.value.trim,
-            Number: Phonenumber.value.trim,
-            Group: Phonegroup.value.trim
+            Name: Phoneowner.value.trim(),
+            Number: Phonenumber.value.trim(),
+            Group: Phonegroup.value.trim()
         };
-        const re = yield fetch('/api/AddthePhonNumber', {
+        console.log(body);
+        const re = yield fetch('/api/addthnumber', {
             method: 'POST',
-            headers: { 'Contents - Type': "application/json" },
+            headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         });
+        console.log(re);
         if (re.ok) {
-            alert("삭제 완료");
+            alert("추가 완료");
         }
         else {
             throw new Error(yield re.text());
@@ -350,12 +352,12 @@ Addphonehistory.addEventListener('click', () => __awaiter(this, void 0, void 0, 
             return;
         }
         const body = {
-            CallingName: Phoneowner.value.trim,
-            CallingorGetting: Phonenumber.value.trim
+            CallingName: Phoneowner.value.trim(),
+            CallingorGetting: Phonenumber.value.trim()
         };
         const re = yield fetch('/api/called', {
             method: 'POST',
-            headers: { 'Contents - Type': "application/json" },
+            headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         });
         if (re.ok) {

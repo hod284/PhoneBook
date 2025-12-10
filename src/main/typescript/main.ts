@@ -1,6 +1,6 @@
 const Phoneowner = document.getElementById('PhoneOwner')as HTMLInputElement;
 const Phonenumber = document.getElementById('PhoneNumber')as HTMLInputElement;
-const Phonegroup = document.getElementById('Group')as HTMLInputElement;
+const Phonegroup = document.getElementById('inGroup')as HTMLInputElement;
 const Searchingdate = document.getElementById('SearchingDate')as HTMLInputElement;
 const Callingorgetting = document.getElementById('callingorgetting')as HTMLInputElement;
 
@@ -17,7 +17,7 @@ const Addphonehistory = document.getElementById('addphonehistory')as HTMLButtonE
 const Init = document.getElementById('inite')as HTMLButtonElement;
 const Onedelete = document.getElementById('onedelete')as HTMLButtonElement;
 
-const getPhoneinfobynumber = document.getElementById('getphonebookclassbynumber') as HTMLButtonElement;
+const getPhoneinfobynumber = document.getElementById('getphonehistoryclassbynumber') as HTMLButtonElement;
 const getphoneinfobyowner1 = document.getElementById('getphonebookclass') as HTMLButtonElement;
 const getphoneinfobyowner2 = document.getElementById('getphonehistoryclass') as HTMLButtonElement;
 const getphoneinfobygroup = document.getElementById('Group') as HTMLButtonElement;
@@ -172,13 +172,13 @@ Onedelete.addEventListener("click",async ()=>{
         return;
     }
      const body={
-         Name:Phoneowner.value.trim ,
-         Number:Phonenumber.value.trim,
-         Group:Phonegroup.value.trim 
+         Name:Phoneowner.value.trim(),
+         Number:Phonenumber.value.trim(),
+         Group:Phonegroup.value.trim() 
     };
     const re = await fetch('/api/onedelete',{
         method: 'DELETE',
-        headers :{'Contents - Type': "application/json"},
+        headers :{'Content-Type': "application/json"},
         body: JSON.stringify(body)
     });
     if(re.ok)
@@ -249,7 +249,7 @@ catch(exception)
 getphoneinfobygroup.addEventListener("click",async()=>{
 try{
 
-  if(Phonegroup.value === null|| Phonegroup.value ===null)
+  if(Phonegroup.value === null)
     {
         alert("그룹을 입력하세요");
         return;
@@ -280,7 +280,7 @@ getphoneinfobydate.addEventListener('click',async ()=>{
         alert("검색할 연도나 달을 입력하세요");
         return;
     }
-     const re = await fetch(`/api/da/${Searchingdate.value.trim}`);
+     const re = await fetch(`/api/da/${Searchingdate.value.trim()}`);
      if(re.ok)
     {
          const data = await re.json();  
@@ -307,7 +307,7 @@ try
         return;
     }
 
- const re = await fetch(`/api/nu/${Phoneowner.value.trim}`);
+ const re = await fetch(`/api/nu/${Phoneowner.value.trim()}`);
    if(re.ok)
     {
     const data = await re.json();  
@@ -347,13 +347,13 @@ try
         return;
     }
  const body={
-         Name:Phoneowner.value.trim ,
-         Number:Phonenumber.value.trim,
-         Group:Phonegroup.value.trim 
+         Name:Phoneowner.value.trim(),
+         Number:Phonenumber.value.trim(),
+         Group:Phonegroup.value.trim() 
     };
   const re = await fetch('/api/changephonbookinfo',{
         method: 'PATCH',
-        headers :{'Contents - Type': "application/json"},
+        headers :{'Content-Type': "application/json"},
         body: JSON.stringify(body)
      });
     if(re.ok)
@@ -375,7 +375,7 @@ try
 
 
 Addphonebook.addEventListener('click',async()=>{
-try
+    try
 {
   if(Phoneowner.value === null|| Phoneowner.value.trim.toString() ==="")
     {
@@ -393,18 +393,20 @@ try
         return;
     }
  const body={
-         Name:Phoneowner.value.trim ,
-         Number:Phonenumber.value.trim,
-         Group:Phonegroup.value.trim 
+         Name:Phoneowner.value.trim(),
+         Number:Phonenumber.value.trim(),
+         Group:Phonegroup.value.trim() 
     };
-  const re = await fetch('/api/AddthePhonNumber',{
+     console.log(body);
+  const re = await fetch('/api/addthnumber',{
         method: 'POST',
-        headers :{'Contents - Type': "application/json"},
+        headers :{'Content-Type': "application/json"},
         body: JSON.stringify(body)
      });
+     console.log(re);
     if(re.ok)
     {
-        alert("삭제 완료");
+        alert("추가 완료");
     }
     else
     {
@@ -433,12 +435,12 @@ try
         return;
     }
  const body={
-         CallingName:Phoneowner.value.trim ,
-         CallingorGetting:Phonenumber.value.trim
+         CallingName:Phoneowner.value.trim(),
+         CallingorGetting:Phonenumber.value.trim()
     };
   const re = await fetch('/api/called',{
         method: 'POST',
-        headers :{'Contents - Type': "application/json"},
+        headers :{'Content-Type': "application/json"},
         body: JSON.stringify(body)
      });
     if(re.ok)
