@@ -2,15 +2,20 @@ package com.example.AdressBook.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.AdressBook.Mapperclass.*;
+
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
+
 import com.example.AdressBook.Dto.ResponseChildDto;
 import com.example.AdressBook.Dto.ResponseDto;
 import com.example.AdressBook.Dto.ResponseParentDto;
 import com.example.AdressBook.EntityClass.*;
+import com.example.AdressBook.MapperClass.ChildMapper;   
+import com.example.AdressBook.MapperClass.ParentMapper;
 import com.example.AdressBook.Repositry.*;
 import org.springframework.transaction.annotation.Transactional;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -21,8 +26,8 @@ public class BookService {
     
       private RepositryChild    ChildRepo;
       private RepositryParent  ParentRepo;
-      private ParentMapper  PMapper; 
-      private ChildMapper  CMapper; 
+      private ParentMapper PMapper;
+      private ChildMapper CMapper;
 
       public BookService(  RepositryChild CRepo , RepositryParent PRepo,ParentMapper pmapper,ChildMapper cmapper)
       { 
@@ -31,6 +36,9 @@ public class BookService {
           PMapper = pmapper;
           CMapper = cmapper;
       }
+
+    public BookService() {
+    }
       // db데이터 업데이트 PHONEBOOK
       @Transactional
       public void SavePhoneNumber(ResponseParentDto rp)

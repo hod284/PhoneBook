@@ -1,4 +1,4 @@
-package com.example.AdressBook.Mapperclass;
+package com.example.AdressBook.MapperClass;
 
 import java.util.List;
 
