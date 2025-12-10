@@ -1,11 +1,11 @@
-package com.example.AdressBook.MapperClass;
+package com.example.AddressBook.MapperClass;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.AdressBook.Dto.ResponseParentDto;
+import com.example.AddressBook.Dto.ResponseParentDto;
 
 @Mapper
 public interface ParentMapper {

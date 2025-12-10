@@ -1,4 +1,4 @@
-package com.example.AdressBook;
+package com.example.AddressBook;
 
 
 import org.springframework.boot.SpringApplication;

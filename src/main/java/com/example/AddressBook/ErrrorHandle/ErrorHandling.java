@@ -1,4 +1,4 @@
-package com.example.AdressBook.ErrrorHandle;
+package com.example.AddressBook.ErrrorHandle;
 
 import java.sql.SQLException;
 

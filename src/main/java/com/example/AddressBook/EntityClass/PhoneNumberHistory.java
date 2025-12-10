@@ -1,4 +1,4 @@
-package com.example.AdressBook.EntityClass;
+package com.example.AddressBook.EntityClass;
 
 import java.time.LocalDate;
 

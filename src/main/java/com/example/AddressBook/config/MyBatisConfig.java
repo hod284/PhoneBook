@@ -1,4 +1,4 @@
-package com.example.AdressBook.config;
+package com.example.AddressBook.config;
 
 import javax.sql.DataSource;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan("com.example.AdressBook.MapperClass")
+@MapperScan("com.example.AddressBook.MapperClass")
 public class MyBatisConfig {
 
     @Bean
@@ -20,7 +20,7 @@ public class MyBatisConfig {
         sessionFactory.setMapperLocations(
             new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*.xml")
         );
-        sessionFactory.setTypeAliasesPackage("com.example.AdressBook.Dto");
+        sessionFactory.setTypeAliasesPackage("com.example.AddressBook.Dto");
         
         return sessionFactory.getObject();
     }

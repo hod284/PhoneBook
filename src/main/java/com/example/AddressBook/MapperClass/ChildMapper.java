@@ -1,8 +1,8 @@
-package com.example.AdressBook.MapperClass;
+package com.example.AddressBook.MapperClass;
 
 import java.time.LocalDate;
 import java.util.List;
-import com.example.AdressBook.Dto.ResponseDto;
+import com.example.AddressBook.Dto.ResponseDto;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

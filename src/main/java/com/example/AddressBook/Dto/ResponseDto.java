@@ -1,4 +1,4 @@
-package com.example.AdressBook.Dto;
+package com.example.AddressBook.Dto;
 
 import java.time.LocalDate;
 

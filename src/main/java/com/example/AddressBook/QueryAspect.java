@@ -1,4 +1,4 @@
-package com.example.AdressBook;
+package com.example.AddressBook;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;

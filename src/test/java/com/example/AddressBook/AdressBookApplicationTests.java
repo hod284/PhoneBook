@@ -1,4 +1,4 @@
-package com.example.AdressBook;
+package com.example.AddressBook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

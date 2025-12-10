@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.example.AdressBook.MapperClass.ParentMapper">
-<resultMap id="PhoneParentsMapper" type="com.example.AdressBook.Dto.ResponseParentDto">
+  <mapper namespace="com.example.AddressBook.MapperClass.ParentMapper">
+<resultMap id="PhoneParentsMapper" type="com.example.AddressBook.Dto.ResponseParentDto">
     <constructor>
     <arg column ="Phone_owner" javaType="string"/>
     <arg column ="phone_number" javaType ="string"/>
