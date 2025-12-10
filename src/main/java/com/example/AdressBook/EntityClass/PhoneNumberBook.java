@@ -22,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name =  "PhoneNumberBook")
+@Table(name =  "phone_numberbook")
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class PhoneNumberBook
 {

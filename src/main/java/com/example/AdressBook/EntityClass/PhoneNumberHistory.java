@@ -18,7 +18,7 @@ import lombok.Setter;
 // 폰주인 전화 건시간 전화를 걸었는지 받았느지를 맵핑한 DB TABLE 에니티 클래스
 @Getter
 @Setter
-@Table(name ="PhoneNumberConnection")
+@Table(name ="phonenumber_connection")
 @Entity
 @NoArgsConstructor(access =  AccessLevel.PUBLIC)
 public class PhoneNumberHistory {

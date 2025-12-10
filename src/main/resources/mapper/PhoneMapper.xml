@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.example.AdressBook.Mapperclass.ParentMapper">
+<resultMap id="PhoneParentsMapper" type="com.example.demo.dto.PhoneParentsDTO">
+    <constructor>
+    <arg column ="Phone_owner" javaType="string"/>
+    <arg column ="phone_number" javaType ="string"/>
+    <arg column ="phone_group"  javaType="int" />
+    </constructor>
+</resultMap>
+
+<select id="GetDatabyName" resultMap="PhoneParentsMapper">
+select Phone_owner, phone_number, phone_group
+from phone_numberbook
+where Phone_owner = #{pname}
+</select>
+
+
+<select id="GetDatabyNumber" resultMap="PhoneParentsMapper">
+select Phone_owner, phone_number, phone_group
+from phone_numberbook
+where  phone_number= #{pnumber}
+</select>
+
+<select id="GetDatabyGroupaslist" resultMap="PhoneParentsMapper">
+select Phone_owner, phone_number, phone_group
+from phone_numberbook
+where  phone_group= #{phonegroup}
+</select>
+
+<select id="GetallPhoneOwner" resultType="string">
+select Phone_owner
+from phone_numberbook
+</select>
+<select id="GetallPhoneNumber" resultType="string">
+select  phone_number
+from phone_numberbook
+</select>
+<select id="GetallPhoneGroup" resultMap="int">
+select  phone_group
+from phone_numberbook
+</select>
+
+</mapper>

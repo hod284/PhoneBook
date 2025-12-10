@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.AdressBook.Mapperclass.ChildMapper">
+
+<resultMap id="Responsefull" type="com.example.AdressBook.Dto.ResponseDto">
+  <constructor>
+  <arg column="phone_owner" javaType="string"/>
+  <arg column="phone_number" javaType="string"/>
+  <arg column="phone_group" javaType="int"/>
+  <arg column="phone_date" javaType="datetime"/>
+  <arg column="phone_callingorgetting" javaType="int"/>
+  </constructor>
+</resultMap>
+
+<select id="GetDatabyNameaslist"  resultMap="Responsefull">
+    select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
+    from phonenumber_connection a 
+    inner join phone_numberbook b 
+    on a.phonebook_id = b.phone_owenr
+    where b.phone_owner = #{pname}
+</select>
+
+<select id="GetDatabyNameasfinding"  resultMap="Responsefull">
+    select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
+    from phonenumber_connection a 
+    inner join phone_numberbook b 
+    on a.phonebook_id = b.phone_owenr
+    where a.phone_owner = #{pname}
+    and to_char(b.phone_datetime,'yyyy-mm-dd') = #{pdate}
+    and b.phone_callingorgetting = #{callingorgetting}
+</select>
+<select id="GetDatabyYearandMonth" resultMap="Responsefull">
+  select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
+    from phonenumber_connection a 
+    inner join phone_numberbook b 
+    on a.phonebook_id = b.phone_owenr
+    where to_char(b.phone_datetime,'yyyy-mm-dd') = #{pdate}
+</select>
+<select id="GetDatabyGroupaslist" resultMap="Responsefull">
+  select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
+    from phonenumber_connection a 
+    inner join phone_numberbook b 
+    on a.phonebook_id = b.phone_owenr
+    where  b.phone_callingorgetting = #{callingorgetting}
+</select>
+<select id="Getalldatetime" resultType="java.time.LocalDate">
+  select   phone_datetime   
+    from phonenumber_connection 
+</select>
+<select id=" Getallcallingorgetting" resultType="int">
+  select  phone_callingorgetting   
+    from phonenumber_connection 
+</select>
+
+
+
+</mapper>

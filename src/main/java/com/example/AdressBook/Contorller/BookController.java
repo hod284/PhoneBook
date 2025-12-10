@@ -100,51 +100,19 @@ public class BookController {
          if(re.Name() == null || re.Name().isBlank()){
              return ResponseEntity.notFound().build();
          }
-          return ResponseEntity.ok(re);   
+          return ResponseEntity.ok(re);
       }
       @GetMapping("/how/{ownner}")
      public ResponseEntity<List<ResponseDto>> getphonecallinghistory(@PathVariable String ownner ) 
      {
-        List<ResponseDto> re = new ArrayList<ResponseDto>();
-         var li =  BService.ListCallinghistorybyName(ownner);
-          log.info(li.toString());
-          if(li.size() ==0)
-          {
-             return ResponseEntity.notFound().build();
-          }
-         for(int i =0; i<li.size(); i++)
-         {
-              re.add(new ResponseDto
-                (li.get(i).getPhonebook().getPhone_owner(),
-                 li.get(i).getPhonebook().getPhone_number(),
-                 li.get(i).getPhonebook().getPhone_group(),
-                 li.get(i).getPhone_datetime(),
-                 li.get(i).getPhone_callingorgetting()
-                ));
-         }
-         return ResponseEntity.ok(re);   
+         var re =  BService.ListCallinghistorybyName(ownner);
+         return ResponseEntity.ok(re); 
       }
       @GetMapping("/da/{date}")
      public ResponseEntity<List<ResponseDto>> getphonecallinghistorybydate(@PathVariable String date ) 
      {
-        List<ResponseDto> re = new ArrayList<ResponseDto>();
-         var li =  BService.ListCallinghistoryByDate(date);
-           log.info(li.toString());
-          if(li.size() ==0)
-          {
-             return ResponseEntity.notFound().build();
-          }
-         for(int i =0; i<li.size(); i++)
-         {
-              re.add(new ResponseDto
-                (li.get(i).getPhonebook().getPhone_owner(),
-                 li.get(i).getPhonebook().getPhone_number(),
-                 li.get(i).getPhonebook().getPhone_group(),
-                 li.get(i).getPhone_datetime(),
-                 li.get(i).getPhone_callingorgetting()
-                ));
-         }
-         return ResponseEntity.ok(re);   
+         var re =  BService.ListCallinghistoryByDate(date);
+         return ResponseEntity.ok(re);
       }
       @GetMapping("/nu/{number}")
       public ResponseEntity<ResponseParentDto> getphoneBookbynumber(@PathVariable String number ) 
