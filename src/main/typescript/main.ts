@@ -301,13 +301,13 @@ getphoneinfobydate.addEventListener('click',async ()=>{
 getPhoneinfobynumber.addEventListener('click',async()=>{
 try
 {
- if(Phonenumber.value === null|| Phoneowner.value.trim.toString() ==="")
+ if(Phonenumber.value === null|| Phonenumber.value.trim.toString() ==="")
     {
         alert("번호를 입력하세요");
         return;
     }
 
- const re = await fetch(`/api/nu/${Phoneowner.value.trim()}`);
+ const re = await fetch(`/api/nu/${Phonenumber.value.trim()}`);
    if(re.ok)
     {
     const data = await re.json();  
@@ -358,7 +358,7 @@ try
      });
     if(re.ok)
     {
-        alert("삭제 완료");
+        alert("수정 완료");
     }
     else
     {
@@ -429,15 +429,16 @@ try
         alert("오너를 입력하세요");
         return;
     }
-    if(Callingorgetting.value === null|| Callingorgetting.value.trim.toString() ==="")
+    if(Callingorgetting.value === null)
     {
-        alert("그룹을 입력하세요");
+        alert("수신여부을 입력하세요");
         return;
     }
  const body={
          CallingName:Phoneowner.value.trim(),
-         CallingorGetting:Phonenumber.value.trim()
+         CallingorGetting:Callingorgetting.value 
     };
+        console.log(body);
   const re = await fetch('/api/called',{
         method: 'POST',
         headers :{'Content-Type': "application/json"},
@@ -445,7 +446,7 @@ try
      });
     if(re.ok)
     {
-        alert("삭제 완료");
+        alert("통화 내역 추가 완료");
     }
     else
     {
@@ -459,30 +460,58 @@ try
     }
 }); 
 
-function SettingtheTable (data)
+function SettingtheTable (data: any)
 {
-    tableBody.innerHTML ="";
-    tableHead.innerHTML ="";
+    tableBody.innerHTML = "";
+    tableHead.innerHTML = "";
+    
+    // 단일 객체인 경우 배열로 변환
+    if (!Array.isArray(data)) {
+        data = [data];
+    }
+    
+    // 빈 배열 체크
+    if (data.length === 0) {
+        alert('데이터가 없습니다');
+        return;
+    }
+    
+    // 단순 배열인 경우 (문자열, 숫자 배열)
+    if (typeof data[0] !== 'object' || data[0] === null) {
+        const column = document.createElement('th') as HTMLElement;
+        column.textContent = 'Value';
+        tableHead.appendChild(column);
+        
+        data.forEach(value => {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td') as HTMLElement;
+            td.textContent = value;
+            tr.appendChild(td);
+            tableBody.appendChild(tr);
+        });
+        return;
+    }
+    
+    // 객체 배열인 경우
     let array = Object.keys(data[0]);
-
     array.forEach(co => { 
-        const column  = document.createElement(co) as HTMLElement;
+        const column = document.createElement('th') as HTMLElement;
+        column.textContent = co;
         tableHead.appendChild(column);
     });
-     data.forEach(row=>{
-       const tr = document.createElement('tr');
-       array.forEach(col =>{
-        const td = document.createElement('td') as HTMLElement;
-        if(col === 'phone_callingorgetting')
-        {
-             td.textContent= row[col] === 1?'수신':'발신';
-        }
-        else
-        {
-            td.textContent=  row[col];
-        }
-        tr.appendChild(td);
-       });
-       tableBody.appendChild(tr);
-     })
+    
+    data.forEach(row => {
+        const tr = document.createElement('tr');
+        array.forEach(col => {
+            const td = document.createElement('td') as HTMLElement;
+            if (col === 'CallingorGetting') {
+                td.textContent = row[col] === 1 ? '수신' : '발신';
+            }
+            else {
+                td.textContent = row[col];
+            }
+            tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+    });
 }

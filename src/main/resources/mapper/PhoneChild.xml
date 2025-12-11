@@ -9,7 +9,7 @@
   <arg column="phone_owner" javaType="string"/>
   <arg column="phone_number" javaType="string"/>
   <arg column="phone_group" javaType="int"/>
-  <arg column="phone_date" javaType="java.time.LocalDate"/>
+  <arg column="phone_datetime" javaType="java.time.LocalDate"/>
   <arg column="phone_callingorgetting" javaType="int"/>
   </constructor>
 </resultMap>
@@ -18,7 +18,7 @@
     select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
     from phonenumber_connection a 
     inner join phone_numberbook b 
-    on a.phonebook_id = b.phone_owenr
+    on a.phonebook_id = b.phone_owner
     where b.phone_owner = #{pname}
 </select>
 
@@ -26,24 +26,24 @@
     select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
     from phonenumber_connection a 
     inner join phone_numberbook b 
-    on a.phonebook_id = b.phone_owenr
-    where a.phone_owner = #{pname}
-    and to_char(b.phone_datetime,'yyyy-mm-dd') = #{pdate}
-    and b.phone_callingorgetting = #{callingorgetting}
+    on a.phonebook_id = b.phone_owner
+    where b.phone_owner = #{pname}
+    and to_char(a.phone_datetime,'yyyy-mm-dd') = #{pdate}
+    and a.phone_callingorgetting = #{callingorgetting}
 </select>
 <select id="GetDatabyYearandMonth" resultMap="Responsefull">
   select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
     from phonenumber_connection a 
     inner join phone_numberbook b 
-    on a.phonebook_id = b.phone_owenr
-    where to_char(b.phone_datetime,'yyyy-mm-dd') = #{pdate}
+    on a.phonebook_id = b.phone_owner
+    where to_char(a.phone_datetime,'yyyy-mm-dd') = #{pdate}
 </select>
 <select id="GetDatabyGroupaslist" resultMap="Responsefull">
   select  b.phone_owner , b.phone_number,b.phone_group, a.phone_datetime,a.phone_callingorgetting   
     from phonenumber_connection a 
     inner join phone_numberbook b 
-    on a.phonebook_id = b.phone_owenr
-    where  b.phone_callingorgetting = #{callingorgetting}
+    on a.phonebook_id = b.phone_owner
+    where  a.phone_callingorgetting = #{callingorgetting}
 </select>
 <select id="Getalldatetime" resultType="java.time.LocalDate">
   select   phone_datetime   

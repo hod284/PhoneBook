@@ -93,7 +93,7 @@ public class BookController {
           return ResponseEntity.ok(re);  
      }
      @GetMapping("/ow/{ownner}")
-     public ResponseEntity<ResponseParentDto> getphoneBookbyowner(@PathVariable String ownner ) 
+     public ResponseEntity<ResponseParentDto> getphoneBookbyowner(@PathVariable("ownner") String ownner ) 
      {
         var re =  BService.GetResponseParentDtobyPhoneName(ownner);
          log.info(re.toString());
@@ -103,19 +103,19 @@ public class BookController {
           return ResponseEntity.ok(re);
       }
       @GetMapping("/how/{ownner}")
-     public ResponseEntity<List<ResponseDto>> getphonecallinghistory(@PathVariable String ownner ) 
+     public ResponseEntity<List<ResponseDto>> getphonecallinghistory(@PathVariable("ownner") String ownner ) 
      {
          var re =  BService.ListCallinghistorybyName(ownner);
          return ResponseEntity.ok(re); 
       }
       @GetMapping("/da/{date}")
-     public ResponseEntity<List<ResponseDto>> getphonecallinghistorybydate(@PathVariable String date ) 
+     public ResponseEntity<List<ResponseDto>> getphonecallinghistorybydate(@PathVariable("date") String date ) 
      {
          var re =  BService.ListCallinghistoryByDate(date);
          return ResponseEntity.ok(re);
       }
       @GetMapping("/nu/{number}")
-      public ResponseEntity<ResponseParentDto> getphoneBookbynumber(@PathVariable String number ) 
+      public ResponseEntity<ResponseParentDto> getphoneBookbynumber(@PathVariable("number") String number ) 
       {
         var re =  BService.GetResponseParentDtobyPhoneNumber(number);
         log.info(re.toString());
@@ -134,7 +134,7 @@ public class BookController {
       @PostMapping("/called")     
       public ResponseEntity<ResponseParentDto> Phoneacalled(@RequestBody ResponseChildDto  dto) 
       {
-        String qurey = "SELECT EXISTS(SELECT 1 FROM PhoneNumberBook WHERE phone_owner =?)";
+        String qurey = "SELECT EXISTS(SELECT 1 FROM phone_numberbook WHERE phone_owner = ?)";
         Boolean exits =  jdbcTemplate.queryForObject(qurey, Boolean.class, dto.CallingName());
         log.info(exits.toString());
         if( exits)
@@ -158,7 +158,7 @@ public class BookController {
           BService.Deletall();
            return ResponseEntity.ok().build();
       }
-        @PatchMapping("/onedelete")     
+        @DeleteMapping("/onedelete")     
       public ResponseEntity<ResponseParentDto> PhonebookDeletOne(@RequestBody ResponseParentDto  dto) 
       {
           log.info("PhonebookModify");
@@ -166,7 +166,7 @@ public class BookController {
            return ResponseEntity.ok().build();
       }
        @GetMapping("/gr/{group}")
-      public ResponseEntity<List<ResponseParentDto>> getPhonebookbookbygroup(@PathVariable int group ) 
+      public ResponseEntity<List<ResponseParentDto>> getPhonebookbookbygroup(@PathVariable("group") int group ) 
       {
           log.info("getPhonebookbookbygroup");
           var re = BService.GetResponseParentDtobyPhoneGroup(group);

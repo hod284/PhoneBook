@@ -86,7 +86,7 @@ public class BookService {
       @Transactional(readOnly = true)
       public  ResponseParentDto GetResponseParentDtobyPhoneNumber(String Number)
       {
-         log.info("GetResponseParentDtobyPhoneName");
+         log.info("GetResponseParentDtobyPhoneNumber");
          return PMapper.GetDatabyNumber(Number); 
       }
        // db데이터 읽어오기 PHONEBOOK 그룹으로
