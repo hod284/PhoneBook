@@ -33,7 +33,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: phone_pass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "8081:8081"
+      - "9081:9081"
 
 volumes:
   db_data:
