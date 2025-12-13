@@ -27,16 +27,24 @@ services:
     image: hod284/phoneapp:latest    # 여기에 네 스프링 Dockerfile 있음
     container_name: spring-phoneapp
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     environment:
       TZ: Asia/Seoul
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phone_db
       SPRING_DATASOURCE_USERNAME: phone_user
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    
     command: >
-      sh -lc 'export SPRING_DATASOURCE_PASSWORD="$$(cat /run/secrets/db_password)";
-              exec java -jar /app/phone.jar'
+      sh -lc '
+        echo "Waiting for DB...";
+        until nc -z db 5432; do
+          sleep 2;
+        done;
+        echo "DB is up";
+        export SPRING_DATASOURCE_PASSWORD="$(cat /run/secrets/db_password)";
+        exec java -jar /app/phone.jar
+      '
+
     secrets:
       - db_password
     ports:
