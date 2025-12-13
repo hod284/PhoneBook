@@ -41,7 +41,7 @@ services:
           sleep 2;
         done;
         echo "DB is up";
-        export SPRING_DATASOURCE_PASSWORD="$(cat /run/secrets/db_password)";
+        export SPRING_DATASOURCE_PASSWORD="$$(cat /run/secrets/db_password)";
         exec java -jar /app/phone.jar
       '
 
