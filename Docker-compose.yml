@@ -3,7 +3,6 @@ version: "3.8"
 services:
   db:
     image: postgres:16
-    container_name: db
     environment:
       restart : unless-stopped
       TZ: Asia/Seoul
@@ -25,7 +24,6 @@ services:
 
   spring-app:
     image: hod284/phoneapp:latest    # 여기에 네 스프링 Dockerfile 있음
-    container_name: spring-phoneapp
     depends_on:
       - db
     environment:
