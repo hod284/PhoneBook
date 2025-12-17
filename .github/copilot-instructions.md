@@ -8,7 +8,7 @@ Spring Boot 4.0 + PostgreSQL 기반 전화번호부 REST API. 전화 연락처�
 ### 레이어 구조 (패키지명 철자 유지)
 - **Contorller/** → REST 엔드포인트 (`/api/*`)
 - **Service/** → 비즈니스 로직, `@Transactional` 관리
-- **Repositry/** → JPA 커스텀 쿼리 (`@Query` JPQL)
+- **Repository/** → JPA 커스텀 쿼리 (`@Query` JPQL)
 - **EntityClass/** → JPA 엔티티 (Lombok `@Getter/@Setter`)
 - **Dto/** → Java `record`로 작성 (불변 데이터 전송)
 - **ErrrorHandle/** → 현재 비어있음 (에러 처리 구현 예정)
@@ -81,7 +81,7 @@ return ResponseEntity.ok(re);
 ## AOP 구성
 `QueryAspect`가 Repository 메서드 실행 결과를 로깅:
 ```java
-@AfterReturning(value = "execution(* com.example.AdressBook..Repositry.*.*(..))", returning = "result")
+@AfterReturning(value = "execution(* com.example.AdressBook..Repository.*.*(..))", returning = "result")
 ```
 - Repository 패키지의 모든 메서드 대상
 - 실행 후 결과를 `log.info`로 출력

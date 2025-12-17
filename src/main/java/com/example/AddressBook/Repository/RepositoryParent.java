@@ -1,4 +1,4 @@
-package com.example.AddressBook.Repositry;
+package com.example.AddressBook.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +8,7 @@ import com.example.AddressBook.EntityClass.PhoneNumberBook;
 
 // 레포지트리 폰넘버 폰주인 폰 그룹에 있는  DB 커넥트 클래스
 //  JpaRepository<enitity class,pk>
-public interface RepositryParent  extends JpaRepository<PhoneNumberBook,Long> {
+public interface RepositoryParent  extends JpaRepository<PhoneNumberBook,Long> {
     
     // jpa 프로젝션 이것도 transient dirty로 데이터 변화체크해서 db에 있는 데이터 수정할때 쓰기위해 db의 데이터를 얻을때 쓰는 프로젝션
     @Query("SELECT p FROM PhoneNumberBook p WHERE p.phone_owner  = :pname")

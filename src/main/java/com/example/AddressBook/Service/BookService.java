@@ -13,7 +13,7 @@ import com.example.AddressBook.Dto.ResponseParentDto;
 import com.example.AddressBook.EntityClass.*;
 import com.example.AddressBook.MapperClass.ChildMapper;   
 import com.example.AddressBook.MapperClass.ParentMapper;
-import com.example.AddressBook.Repositry.*;
+import com.example.AddressBook.Repository.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BookService {
     
-      private RepositryChild    ChildRepo;
-      private RepositryParent  ParentRepo;
+      private RepositoryChild    ChildRepo;
+      private RepositoryParent  ParentRepo;
       private ParentMapper PMapper;
       private ChildMapper CMapper;
 
-      public BookService(  RepositryChild CRepo , RepositryParent PRepo,ParentMapper pmapper,ChildMapper cmapper)
+      public BookService(  RepositoryChild CRepo , RepositoryParent PRepo,ParentMapper pmapper,ChildMapper cmapper)
       { 
           ChildRepo =CRepo;
           ParentRepo =PRepo;  

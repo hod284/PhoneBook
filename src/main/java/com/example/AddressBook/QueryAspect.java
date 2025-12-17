@@ -59,7 +59,7 @@ getData(int a, String b)
 */
 
     @AfterReturning(
-               value ="excution(*com.example.AdressBook..Repositry.*.*(..))",
+               value ="execution(*com.example.AdressBook..Repository.*.*(..))",
                returning ="result"
     )
     public void AfterQuery(Object result )

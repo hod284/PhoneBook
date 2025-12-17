@@ -1,4 +1,4 @@
-package com.example.AddressBook.Repositry;
+package com.example.AddressBook.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.AddressBook.EntityClass.PhoneNumberHistory;
 // 레포지트리 폰 주인을  전화를 건시간 전화를 걸었는지 안걸었는지 담겨있는 DB커넥트 클래스
 //  JpaRepository<enitity class,pk>
-public interface RepositryChild  extends JpaRepository<PhoneNumberHistory,Long> {
+public interface RepositoryChild  extends JpaRepository<PhoneNumberHistory,Long> {
 
 
       // jpa 프로젝션 이것도 transient dirty로 데이터 변화체크해서 db에 있는 데이터 수정할때 쓰기위해 db의 데이터를 얻을때 쓰는 프로젝션
