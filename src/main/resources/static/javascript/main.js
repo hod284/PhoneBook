@@ -300,7 +300,7 @@ Modiftyphonebook.addEventListener('click', () => __awaiter(this, void 0, void 0,
     }
     catch (exception) {
         console.log(exception);
-        alert(" 데이터 없음");
+        alert("수정 실패 폰주인 혹은 번호가 없거나 틀립니다");
     }
 }));
 Addphonebook.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
@@ -338,7 +338,7 @@ Addphonebook.addEventListener('click', () => __awaiter(this, void 0, void 0, fun
     }
     catch (exception) {
         console.log(exception);
-        alert(" 데이터 없음");
+        alert("추가 실패 폰주인 혹은 번호가 중복됩니다");
     }
 }));
 Addphonehistory.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
@@ -370,7 +370,7 @@ Addphonehistory.addEventListener('click', () => __awaiter(this, void 0, void 0, 
     }
     catch (exception) {
         console.log(exception);
-        alert(" 데이터 없음");
+        alert(" 추가 실패 폰주인 혹은 번호가 없습니다");
     }
 }));
 function SettingtheTable(data) {

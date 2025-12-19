@@ -368,7 +368,7 @@ try
  catch(exception)
     {
       console.log(exception);
-        alert(" 데이터 없음");
+        alert("수정 실패 폰주인 혹은 번호가 없거나 틀립니다");
     }
 }); 
 
@@ -416,7 +416,7 @@ Addphonebook.addEventListener('click',async()=>{
  catch(exception)
     {
       console.log(exception);
-        alert(" 데이터 없음");
+        alert("추가 실패 폰주인 혹은 번호가 중복됩니다");
     }
 }); 
 
@@ -456,7 +456,7 @@ try
  catch(exception)
     {
       console.log(exception);
-        alert(" 데이터 없음");
+        alert(" 추가 실패 폰주인 혹은 번호가 없습니다");
     }
 }); 
 
